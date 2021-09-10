@@ -33,8 +33,6 @@ public class ResolutionIDA implements IResolution<MapState,Solution>{
 		return solution;
 	}
 
-	
-	
 	public Solution IDA(Solution s) {
 		double borne = s.getState().getH(finalState);
 		boolean succes = false;
@@ -42,7 +40,6 @@ public class ResolutionIDA implements IResolution<MapState,Solution>{
 		ArrayList<Solution> dejaVu = new ArrayList<>();
 		Solution res = null;
 		while(!succes && !stop) {
-			
 			dejaVu.add(s);
 			res = PHB(s,dejaVu,borne);
 			if(res == null) {
@@ -61,7 +58,7 @@ public class ResolutionIDA implements IResolution<MapState,Solution>{
 	}
 	
 	private Solution PHB(Solution s,ArrayList<Solution> dejaVu, double borne) {
-		/*
+		
 		nbNodeDeveloped++;
 		if(s.getF() > borne) {
 			borneEchec = s.getF();
@@ -98,7 +95,7 @@ public class ResolutionIDA implements IResolution<MapState,Solution>{
 			borneEchec = nouvelleBorne;
 			return null;
 		}
-		*/
+		
 		return null;
 	}
 	

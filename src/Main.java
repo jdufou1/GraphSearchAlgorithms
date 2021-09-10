@@ -77,6 +77,12 @@ public class Main {
 		};
 		
 		
+		int empty = 0;
+		for(int i = 0 ; i < nbLine ; i++)
+			for(int j = 0 ; j < nbCol ; j++)
+				if(test[i][j].contains(" "))
+					empty++;
+		System.out.println("nb case vide : " + empty);
 		MapState initialState = new MapState(nbLine,nbCol,mapInitial);
 		MapState finalState = new MapState(nbLine,nbCol,mapFinal);
 		MapState testState = new MapState(nbLine,nbCol,test);
@@ -106,13 +112,14 @@ class MapStateThread extends Thread{
 		this.view = view;
 		positions = new ArrayList<>();
 		
-		ResolutionIDA solver = new ResolutionIDA();
+		ResolutionRBA solver = new ResolutionRBA();
 		
 		view.update(initialState,positions);
 		view.setFinalMap(finalState);
 		view.show();
 		/* Resolution A* */
 		solution = solver.solve(initialState, finalState).solutionPath();	
+		System.out.println("Cout : "+solution.realCost());
 	}
 	
 	

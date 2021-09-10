@@ -94,4 +94,29 @@ public class Solution implements ISolution<MapState>{
 			return null;
 	}
 	
+	public int realCost() {
+		 if(father == null)
+			 return 0;
+		 else 
+			 return father.realCost() + 1;
+	}
+	
+	/*
+	 * A utiliser pour la recherche bidirectionnelle
+	 * S1 Solution : solution partant de l'etat initial
+	 * S2 Solution : solution partant de l'etat but
+	 * */
+	public static Solution buildFromTheEnd(Solution s1, Solution s2) {
+		Solution result = s1;
+		Solution last = s2;
+		while(last.father != null) {
+			result = new Solution(last.getState(),result);
+			result.setF(s1.realCost() + s2.realCost() - last.realCost());
+			last = last.father;
+		}
+		result = new Solution(last.getState(),result);
+		result.setF(s1.realCost() + s2.realCost() - last.realCost());
+		return result;
+	}
+	
 }
